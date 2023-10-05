@@ -1,0 +1,46 @@
+pipeline {
+     agent { node { label 'AGENT-1' } }
+
+    stages {
+        stage('init') {
+            steps {
+                echo 'Building..'
+                sh '''
+               terraform init
+                
+                '''
+            //     echo 'This is from the git webhook'
+            //     echo 'This is from the git webhook git-hub'
+            //     echo 'Again this is the normal test'
+            // }
+        }
+        stage('plan') {
+            steps {
+                echo 'planning'
+                sh '''
+                terraform plan
+                '''
+            }
+        }
+        stage('apply') {
+            steps {
+                echo 'Applying'
+                sh '''
+                    terraform apply -auto-approve
+                '''
+            }
+        }
+    }
+
+    post { 
+        always { 
+            echo 'I will always run whether job is succes or not'
+        }
+        success {
+            echo 'i will run only the job is success'
+        }
+        failure {
+            echo 'ill run if the job is failed'
+        }
+    }
+}
