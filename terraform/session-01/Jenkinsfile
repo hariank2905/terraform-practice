@@ -32,15 +32,15 @@ pipeline {
         }
     }
 
-    post { 
-        always { 
-            echo 'I will always run whether job is succes or not'
-        }
-        success {
-            echo 'i will run only the job is success'
-        }
-        failure {
-            echo 'ill run if the job is failed'
-        }
-    }
+    // post { 
+    //     always { 
+    //         echo 'I will always run whether job is succes or not'
+    //     }
+    //     success {
+    //         echo 'i will run only the job is success'
+    //     }
+    //     failure {
+    //         echo 'ill run if the job is failed'
+    //     }
+    // }
 }
